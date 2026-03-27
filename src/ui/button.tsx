@@ -2,7 +2,7 @@ import { useRender } from '@base-ui/react'
 import { Button as BaseButton } from '@base-ui/react/button'
 import { mergeProps } from '@base-ui/react/merge-props'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../../lib/utils'
+import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
   [
