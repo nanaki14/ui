@@ -19,19 +19,30 @@ function AlertDialogContent({
     <AlertDialog.Portal>
       <AlertDialog.Backdrop
         className={cn(
-          'fixed inset-0 z-50 bg-black/50',
-          'data-[ending-style]:animate-out data-[ending-style]:fade-out-0',
+          // Layout
+          'fixed inset-0 z-50',
+          // Visual
+          'bg-black/50',
+          // Animation: enter
           'data-[starting-style]:animate-in data-[starting-style]:fade-in-0',
+          // Animation: exit
+          'data-[ending-style]:animate-out data-[ending-style]:fade-out-0',
+          // Duration
           'duration-200',
         )}
       />
       <AlertDialog.Popup
         data-slot="alert-dialog-content"
         className={cn(
-          'fixed top-1/2 left-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2',
-          'bg-background rounded-lg border shadow-lg p-6',
-          'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+          // Layout
+          'fixed top-1/2 left-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 p-6',
+          // Visual
+          'bg-background rounded-lg border shadow-lg',
+          // Animation: enter
           'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+          // Animation: exit
+          'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+          // Duration
           'duration-200',
           className,
         )}
@@ -97,8 +108,17 @@ function AlertDialogAction({
     <AlertDialog.Close
       data-slot="alert-dialog-action"
       className={cn(
-        'bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors',
+        // Layout
+        'inline-flex h-9 items-center justify-center rounded-md px-4 py-2',
+        // Visual
+        'bg-primary text-primary-foreground text-sm font-medium',
+        // Transition
+        'transition-colors',
+        // Hover
+        'hover:bg-primary/90',
+        // Focus
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+        // Disabled
         'disabled:pointer-events-none disabled:opacity-50',
         className,
       )}
@@ -115,8 +135,17 @@ function AlertDialogCancel({
     <AlertDialog.Close
       data-slot="alert-dialog-cancel"
       className={cn(
-        'border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center rounded-md border px-4 py-2 text-sm font-medium transition-colors',
+        // Layout
+        'inline-flex h-9 items-center justify-center rounded-md border px-4 py-2',
+        // Visual
+        'border-input bg-background text-sm font-medium',
+        // Transition
+        'transition-colors',
+        // Hover
+        'hover:bg-accent hover:text-accent-foreground',
+        // Focus
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+        // Disabled
         'disabled:pointer-events-none disabled:opacity-50',
         className,
       )}

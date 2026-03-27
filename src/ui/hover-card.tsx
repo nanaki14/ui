@@ -25,10 +25,17 @@ function HoverCardContent({
         <PreviewCard.Popup
           data-slot="hover-card-content"
           className={cn(
-            'bg-popover text-popover-foreground z-50 w-64 rounded-md border p-4 shadow-md outline-none',
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            // Layout
+            'z-50 w-64 rounded-md border p-4',
+            // Visual
+            'bg-popover text-popover-foreground shadow-md outline-none',
+            // Animation: enter
             'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            // Animation: exit
+            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            // Animation: slide direction
             'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+            // Duration
             'duration-200',
             className,
           )}

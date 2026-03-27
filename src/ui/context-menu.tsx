@@ -38,7 +38,14 @@ function ContextMenuSubTrigger({
       data-slot="context-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        'focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none',
+        // Layout
+        'flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5',
+        // Visual
+        'text-sm outline-none',
+        // Focus & open state
+        'focus:bg-accent focus:text-accent-foreground',
+        'data-[state=open]:bg-accent data-[state=open]:text-accent-foreground',
+        // Inset & icon
         'data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
         className,
       )}
@@ -60,9 +67,15 @@ function ContextMenuSubContent({
         <ContextMenu.Popup
           data-slot="context-menu-sub-content"
           className={cn(
-            'bg-popover text-popover-foreground z-50 min-w-[8rem] overflow-hidden rounded-md border p-1 shadow-lg',
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            // Layout
+            'z-50 min-w-[8rem] overflow-hidden rounded-md border p-1',
+            // Visual
+            'bg-popover text-popover-foreground shadow-lg',
+            // Animation: enter
             'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            // Animation: exit
+            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            // Duration
             'duration-100',
             className,
           )}
@@ -83,9 +96,15 @@ function ContextMenuContent({
         <ContextMenu.Popup
           data-slot="context-menu-content"
           className={cn(
-            'bg-popover text-popover-foreground z-50 min-w-[8rem] overflow-hidden rounded-md border p-1 shadow-md',
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            // Layout
+            'z-50 min-w-[8rem] overflow-hidden rounded-md border p-1',
+            // Visual
+            'bg-popover text-popover-foreground shadow-md',
+            // Animation: enter
             'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            // Animation: exit
+            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            // Duration
             'duration-100',
             className,
           )}
@@ -106,8 +125,17 @@ function ContextMenuItem({
       data-slot="context-menu-item"
       data-inset={inset}
       className={cn(
-        'focus:bg-accent focus:text-accent-foreground relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors',
+        // Layout
+        'relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5',
+        // Visual
+        'text-sm outline-none',
+        // Transition
+        'transition-colors',
+        // Focus state
+        'focus:bg-accent focus:text-accent-foreground',
+        // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+        // Inset & icon
         'data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
         className,
       )}
@@ -126,7 +154,15 @@ function ContextMenuCheckboxItem({
     <ContextMenu.CheckboxItem
       data-slot="context-menu-checkbox-item"
       className={cn(
-        'focus:bg-accent focus:text-accent-foreground relative flex cursor-default select-none items-center rounded-sm py-1.5 pr-2 pl-8 text-sm outline-none transition-colors',
+        // Layout
+        'relative flex cursor-default select-none items-center rounded-sm py-1.5 pr-2 pl-8',
+        // Visual
+        'text-sm outline-none',
+        // Transition
+        'transition-colors',
+        // Focus state
+        'focus:bg-accent focus:text-accent-foreground',
+        // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         className,
       )}
@@ -152,7 +188,15 @@ function ContextMenuRadioItem({
     <ContextMenu.RadioItem
       data-slot="context-menu-radio-item"
       className={cn(
-        'focus:bg-accent focus:text-accent-foreground relative flex cursor-default select-none items-center rounded-sm py-1.5 pr-2 pl-8 text-sm outline-none transition-colors',
+        // Layout
+        'relative flex cursor-default select-none items-center rounded-sm py-1.5 pr-2 pl-8',
+        // Visual
+        'text-sm outline-none',
+        // Transition
+        'transition-colors',
+        // Focus state
+        'focus:bg-accent focus:text-accent-foreground',
+        // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         className,
       )}

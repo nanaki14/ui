@@ -22,7 +22,10 @@ function TabsList({
     <Tabs.List
       data-slot='tabs-list'
       className={cn(
-        'bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-1',
+        // Layout
+        'inline-flex h-9 w-fit items-center justify-center rounded-lg p-1',
+        // Visual
+        'bg-muted text-muted-foreground',
         className,
       )}
       {...props}
@@ -38,10 +41,18 @@ function TabsTrigger({
     <Tabs.Tab
       data-slot='tabs-trigger'
       className={cn(
-        'ring-offset-background inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium transition-all',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-        'disabled:pointer-events-none disabled:opacity-50',
+        // Layout
+        'inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1',
+        // Visual
+        'text-sm font-medium',
+        // Transition
+        'transition-all',
+        // Selected state
         'data-[selected]:bg-background data-[selected]:text-foreground data-[selected]:shadow-sm',
+        // Focus
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+        // Disabled
+        'disabled:pointer-events-none disabled:opacity-50',
         className,
       )}
       {...props}
@@ -57,7 +68,15 @@ function TabsContent({
     <Tabs.Panel
       data-slot='tabs-content'
       className={cn(
-        'ring-offset-background mt-2',
+        // Layout
+        'mt-2',
+        // Animation: enter
+        'data-[starting-style]:animate-in data-[starting-style]:fade-in-0',
+        // Animation: exit
+        'data-[ending-style]:animate-out data-[ending-style]:fade-out-0',
+        // Duration
+        'duration-150',
+        // Focus
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
         className,
       )}

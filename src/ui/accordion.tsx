@@ -38,7 +38,16 @@ function AccordionTrigger({
       <Accordion.Trigger
         data-slot='accordion-trigger'
         className={cn(
-          'flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline text-left [&[data-panel-open]>svg]:rotate-180',
+          // Layout
+          'flex flex-1 items-center justify-between py-4 text-left',
+          // Visual
+          'text-sm font-medium',
+          // Transition
+          'transition-all',
+          // Hover
+          'hover:underline',
+          // Icon rotation when open
+          '[&[data-panel-open]>svg]:rotate-180',
           className,
         )}
         {...props}
@@ -59,7 +68,14 @@ function AccordionContent({
     <Accordion.Panel
       data-slot='accordion-content'
       className={cn(
-        'data-[ending-style]:animate-accordion-up data-[starting-style]:animate-accordion-down overflow-hidden text-sm',
+        // Layout
+        'overflow-hidden',
+        // Visual
+        'text-sm',
+        // Animation: enter
+        'data-[starting-style]:animate-accordion-down',
+        // Animation: exit
+        'data-[ending-style]:animate-accordion-up',
         className,
       )}
       {...props}
