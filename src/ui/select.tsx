@@ -24,7 +24,18 @@ function SelectTrigger({
     <Select.Trigger
       data-slot="select-trigger"
       className={cn(
-        'border-input bg-background ring-offset-background placeholder:text-muted-foreground focus:ring-ring flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border px-3 py-2 text-sm shadow-sm focus:ring-1 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
+        // Layout
+        'flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border px-3 py-2',
+        // Visual
+        'border-input bg-background text-sm shadow-sm',
+        // Placeholder
+        'placeholder:text-muted-foreground',
+        // Focus
+        'focus:ring-1 focus:ring-ring focus:outline-none',
+        // Disabled
+        'disabled:cursor-not-allowed disabled:opacity-50',
+        // Icon
+        '[&>span]:line-clamp-1',
         className,
       )}
       {...props}
@@ -53,10 +64,17 @@ function SelectContent({
         <Select.Popup
           data-slot="select-content"
           className={cn(
-            'bg-popover text-popover-foreground relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border shadow-md',
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            // Layout
+            'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border',
+            // Visual
+            'bg-popover text-popover-foreground shadow-md',
+            // Animation: enter
             'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            // Animation: exit
+            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            // Animation: slide direction
             'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+            // Duration
             'duration-100',
             className,
           )}
@@ -94,7 +112,13 @@ function SelectItem({
     <Select.Item
       data-slot="select-item"
       className={cn(
-        'focus:bg-accent focus:text-accent-foreground relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pr-8 pl-2 text-sm outline-none',
+        // Layout
+        'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pr-8 pl-2',
+        // Visual
+        'text-sm outline-none',
+        // Focus state
+        'focus:bg-accent focus:text-accent-foreground',
+        // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         className,
       )}

@@ -6,33 +6,37 @@ import { cn } from '@/lib/utils'
 
 const sheetVariants = cva(
   [
+    // Base layout
     'bg-background fixed z-50 flex flex-col gap-4 shadow-lg',
+    // Transition
     'transition-all duration-300',
-    'data-[ending-style]:animate-out data-[ending-style]:fade-out-0',
+    // Animation: enter
     'data-[starting-style]:animate-in data-[starting-style]:fade-in-0',
+    // Animation: exit
+    'data-[ending-style]:animate-out data-[ending-style]:fade-out-0',
   ],
   {
     variants: {
       side: {
         top: [
           'inset-x-0 top-0 border-b',
-          'data-[ending-style]:slide-out-to-top',
           'data-[starting-style]:slide-in-from-top',
+          'data-[ending-style]:slide-out-to-top',
         ],
         bottom: [
           'inset-x-0 bottom-0 border-t',
-          'data-[ending-style]:slide-out-to-bottom',
           'data-[starting-style]:slide-in-from-bottom',
+          'data-[ending-style]:slide-out-to-bottom',
         ],
         left: [
           'inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm',
-          'data-[ending-style]:slide-out-to-left',
           'data-[starting-style]:slide-in-from-left',
+          'data-[ending-style]:slide-out-to-left',
         ],
         right: [
           'inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm',
-          'data-[ending-style]:slide-out-to-right',
           'data-[starting-style]:slide-in-from-right',
+          'data-[ending-style]:slide-out-to-right',
         ],
       },
     },
@@ -64,9 +68,15 @@ function SheetContent({
     <Dialog.Portal>
       <Dialog.Backdrop
         className={cn(
-          'fixed inset-0 z-50 bg-black/50',
-          'data-[ending-style]:animate-out data-[ending-style]:fade-out-0',
+          // Layout
+          'fixed inset-0 z-50',
+          // Visual
+          'bg-black/50',
+          // Animation: enter
           'data-[starting-style]:animate-in data-[starting-style]:fade-in-0',
+          // Animation: exit
+          'data-[ending-style]:animate-out data-[ending-style]:fade-out-0',
+          // Duration
           'duration-300',
         )}
       />
@@ -79,8 +89,16 @@ function SheetContent({
         <Dialog.Close
           aria-label="Close"
           className={cn(
-            'absolute top-4 right-4 rounded-sm opacity-70 transition-opacity',
-            'hover:opacity-100 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-none',
+            // Layout
+            'absolute top-4 right-4 rounded-sm',
+            // Visual
+            'opacity-70',
+            // Transition
+            'transition-opacity',
+            // Hover & focus
+            'hover:opacity-100',
+            'focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-none',
+            // Disabled
             'disabled:pointer-events-none',
           )}
         >

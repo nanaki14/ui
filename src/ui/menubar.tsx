@@ -8,7 +8,10 @@ function Menubar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) 
     <div
       data-slot="menubar"
       className={cn(
-        'flex h-9 items-center gap-1 rounded-md border bg-background px-1 shadow-sm',
+        // Layout
+        'flex h-9 items-center gap-1 rounded-md px-1',
+        // Visual
+        'border bg-background shadow-sm',
         className,
       )}
       {...props}
@@ -28,9 +31,14 @@ function MenubarTrigger({
     <Menu.Trigger
       data-slot="menubar-trigger"
       className={cn(
-        'flex cursor-default select-none items-center rounded-sm px-3 py-1 text-sm font-medium outline-none',
+        // Layout
+        'flex cursor-default select-none items-center rounded-sm px-3 py-1',
+        // Visual
+        'text-sm font-medium outline-none',
+        // Hover & focus
         'hover:bg-accent hover:text-accent-foreground',
         'focus:bg-accent focus:text-accent-foreground',
+        // Open state
         'data-[popup-open]:bg-accent data-[popup-open]:text-accent-foreground',
         className,
       )}
@@ -54,9 +62,18 @@ function MenubarContent({
         <Menu.Popup
           data-slot="menubar-content"
           className={cn(
-            'z-50 min-w-48 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md',
+            // Layout
+            'z-50 min-w-48 overflow-hidden rounded-md border p-1',
+            // Visual
+            'bg-popover text-popover-foreground shadow-md',
+            // Animation: enter
             'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            // Animation: exit
             'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            // Animation: slide direction
+            'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+            // Duration
+            'duration-100',
             className,
           )}
           {...props}
@@ -76,9 +93,15 @@ function MenubarItem({
       data-slot="menubar-item"
       data-inset={inset}
       className={cn(
-        'relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none',
+        // Layout
+        'relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5',
+        // Visual
+        'text-sm outline-none',
+        // Focus state
         'focus:bg-accent focus:text-accent-foreground',
+        // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+        // Icon
         '[&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0',
         inset && 'pl-8',
         className,
@@ -129,8 +152,13 @@ function MenubarCheckboxItem({
     <Menu.CheckboxItem
       data-slot="menubar-checkbox-item"
       className={cn(
-        'relative flex cursor-default select-none items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-none',
+        // Layout
+        'relative flex cursor-default select-none items-center gap-2 rounded-sm py-1.5 pr-2 pl-8',
+        // Visual
+        'text-sm outline-none',
+        // Focus state
         'focus:bg-accent focus:text-accent-foreground',
+        // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         className,
       )}
@@ -162,8 +190,13 @@ function MenubarRadioItem({
     <Menu.RadioItem
       data-slot="menubar-radio-item"
       className={cn(
-        'relative flex cursor-default select-none items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-none',
+        // Layout
+        'relative flex cursor-default select-none items-center gap-2 rounded-sm py-1.5 pr-2 pl-8',
+        // Visual
+        'text-sm outline-none',
+        // Focus state
         'focus:bg-accent focus:text-accent-foreground',
+        // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         className,
       )}
@@ -189,9 +222,14 @@ function MenubarSubTrigger({
     <Menu.SubmenuTrigger
       data-slot="menubar-sub-trigger"
       className={cn(
-        'flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none',
+        // Layout
+        'flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5',
+        // Visual
+        'text-sm outline-none',
+        // Focus & open state
         'focus:bg-accent focus:text-accent-foreground',
         'data-[popup-open]:bg-accent data-[popup-open]:text-accent-foreground',
+        // Icon
         '[&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0',
         inset && 'pl-8',
         className,
@@ -214,9 +252,16 @@ function MenubarSubContent({
         <Menu.Popup
           data-slot="menubar-sub-content"
           className={cn(
-            'z-50 min-w-32 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg',
+            // Layout
+            'z-50 min-w-32 overflow-hidden rounded-md border p-1',
+            // Visual
+            'bg-popover text-popover-foreground shadow-lg',
+            // Animation: enter
             'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            // Animation: exit
             'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            // Duration
+            'duration-100',
             className,
           )}
           {...props}

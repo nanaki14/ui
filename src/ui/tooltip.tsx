@@ -39,10 +39,17 @@ function TooltipContent({
         <Tooltip.Popup
           data-slot="tooltip-content"
           className={cn(
-            'bg-primary text-primary-foreground z-50 w-auto rounded-md px-3 py-1.5 text-xs',
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            // Layout
+            'z-50 w-auto rounded-md px-3 py-1.5',
+            // Visual
+            'bg-primary text-primary-foreground text-xs',
+            // Animation: enter
             'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            // Animation: exit
+            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            // Animation: slide direction
             'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+            // Duration
             'duration-150',
             className,
           )}

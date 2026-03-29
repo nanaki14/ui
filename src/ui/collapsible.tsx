@@ -35,7 +35,12 @@ function CollapsibleContent({
     <Collapsible.Panel
       data-slot='collapsible-content'
       className={cn(
-        'data-[ending-style]:animate-accordion-up data-[starting-style]:animate-accordion-down overflow-hidden',
+        // Layout
+        'overflow-hidden',
+        // Animation: enter
+        'data-[starting-style]:animate-accordion-down',
+        // Animation: exit
+        'data-[ending-style]:animate-accordion-up',
         className,
       )}
       {...props}
