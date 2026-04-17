@@ -1,6 +1,6 @@
-import * as React from 'react'
 import { Select } from '@base-ui/react/select'
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
+import type * as React from 'react'
 import { cn } from '@/lib/utils'
 
 function SelectRoot({ ...props }: React.ComponentProps<typeof Select.Root>) {
@@ -31,7 +31,7 @@ function SelectTrigger({
         // Placeholder
         'placeholder:text-muted-foreground',
         // Focus
-        'focus:ring-1 focus:ring-ring focus:outline-none',
+        'focus:outline-none focus:ring-1 focus:ring-ring',
         // Disabled
         'disabled:cursor-not-allowed disabled:opacity-50',
         // Icon
@@ -69,9 +69,9 @@ function SelectContent({
             // Visual
             'bg-popover text-popover-foreground shadow-md',
             // Animation: enter
-            'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            'data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95 data-[starting-style]:animate-in',
             // Animation: exit
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            'data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95 data-[ending-style]:animate-out',
             // Animation: slide direction
             'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
             // Duration
@@ -97,17 +97,13 @@ function SelectLabel({ className, ...props }: React.ComponentProps<typeof Select
   return (
     <Select.GroupLabel
       data-slot="select-label"
-      className={cn('px-2 py-1.5 text-xs font-semibold', className)}
+      className={cn('px-2 py-1.5 font-semibold text-xs', className)}
       {...props}
     />
   )
 }
 
-function SelectItem({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<typeof Select.Item>) {
+function SelectItem({ className, children, ...props }: React.ComponentProps<typeof Select.Item>) {
   return (
     <Select.Item
       data-slot="select-item"
@@ -138,7 +134,7 @@ function SelectSeparator({ className, ...props }: React.ComponentProps<typeof Se
   return (
     <Select.Separator
       data-slot="select-separator"
-      className={cn('bg-muted -mx-1 my-1 h-px', className)}
+      className={cn('-mx-1 my-1 h-px bg-muted', className)}
       {...props}
     />
   )

@@ -1,13 +1,10 @@
-import * as React from 'react'
 import { Tooltip } from '@base-ui/react/tooltip'
+import type * as React from 'react'
 import { cn } from '@/lib/utils'
 
 // Tooltip.Provider is available but not required in Base UI v1.
 // TooltipProvider is exposed as a convenience wrapper for shared delay groups.
-function TooltipProvider({
-  children,
-  ...props
-}: React.ComponentProps<typeof Tooltip.Provider>) {
+function TooltipProvider({ children, ...props }: React.ComponentProps<typeof Tooltip.Provider>) {
   return <Tooltip.Provider {...props}>{children}</Tooltip.Provider>
 }
 
@@ -44,9 +41,9 @@ function TooltipContent({
             // Visual
             'bg-primary text-primary-foreground text-xs',
             // Animation: enter
-            'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            'data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95 data-[starting-style]:animate-in',
             // Animation: exit
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            'data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95 data-[ending-style]:animate-out',
             // Animation: slide direction
             'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
             // Duration

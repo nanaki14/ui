@@ -1,6 +1,6 @@
-import * as React from 'react'
 import { Menu } from '@base-ui/react/menu'
 import { CheckIcon, ChevronRightIcon, CircleIcon } from 'lucide-react'
+import type * as React from 'react'
 import { cn } from '@/lib/utils'
 
 function Menubar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
@@ -23,10 +23,7 @@ function MenubarMenu({ ...props }: React.ComponentProps<typeof Menu.Root>) {
   return <Menu.Root {...props} />
 }
 
-function MenubarTrigger({
-  className,
-  ...props
-}: React.ComponentProps<typeof Menu.Trigger>) {
+function MenubarTrigger({ className, ...props }: React.ComponentProps<typeof Menu.Trigger>) {
   return (
     <Menu.Trigger
       data-slot="menubar-trigger"
@@ -34,7 +31,7 @@ function MenubarTrigger({
         // Layout
         'flex cursor-default select-none items-center rounded-sm px-3 py-1',
         // Visual
-        'text-sm font-medium outline-none',
+        'font-medium text-sm outline-none',
         // Hover & focus
         'hover:bg-accent hover:text-accent-foreground',
         'focus:bg-accent focus:text-accent-foreground',
@@ -67,9 +64,9 @@ function MenubarContent({
             // Visual
             'bg-popover text-popover-foreground shadow-md',
             // Animation: enter
-            'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            'data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95 data-[starting-style]:animate-in',
             // Animation: exit
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            'data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95 data-[ending-style]:animate-out',
             // Animation: slide direction
             'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
             // Duration
@@ -102,7 +99,7 @@ function MenubarItem({
         // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         // Icon
-        '[&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0',
+        '[&_svg:not([class*="size-"])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0',
         inset && 'pl-8',
         className,
       )}
@@ -111,10 +108,7 @@ function MenubarItem({
   )
 }
 
-function MenubarSeparator({
-  className,
-  ...props
-}: React.ComponentProps<typeof Menu.Separator>) {
+function MenubarSeparator({ className, ...props }: React.ComponentProps<typeof Menu.Separator>) {
   return (
     <Menu.Separator
       data-slot="menubar-separator"
@@ -132,11 +126,7 @@ function MenubarLabel({
   return (
     <div
       data-slot="menubar-label"
-      className={cn(
-        'px-2 py-1.5 text-sm font-semibold',
-        inset && 'pl-8',
-        className,
-      )}
+      className={cn('px-2 py-1.5 font-semibold text-sm', inset && 'pl-8', className)}
       {...props}
     />
   )
@@ -175,9 +165,7 @@ function MenubarCheckboxItem({
   )
 }
 
-function MenubarRadioGroup({
-  ...props
-}: React.ComponentProps<typeof Menu.RadioGroup>) {
+function MenubarRadioGroup({ ...props }: React.ComponentProps<typeof Menu.RadioGroup>) {
   return <Menu.RadioGroup data-slot="menubar-radio-group" {...props} />
 }
 
@@ -230,7 +218,7 @@ function MenubarSubTrigger({
         'focus:bg-accent focus:text-accent-foreground',
         'data-[popup-open]:bg-accent data-[popup-open]:text-accent-foreground',
         // Icon
-        '[&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0',
+        '[&_svg:not([class*="size-"])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0',
         inset && 'pl-8',
         className,
       )}
@@ -242,10 +230,7 @@ function MenubarSubTrigger({
   )
 }
 
-function MenubarSubContent({
-  className,
-  ...props
-}: React.ComponentProps<typeof Menu.Popup>) {
+function MenubarSubContent({ className, ...props }: React.ComponentProps<typeof Menu.Popup>) {
   return (
     <Menu.Portal>
       <Menu.Positioner side="right" sideOffset={8}>
@@ -257,9 +242,9 @@ function MenubarSubContent({
             // Visual
             'bg-popover text-popover-foreground shadow-lg',
             // Animation: enter
-            'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            'data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95 data-[starting-style]:animate-in',
             // Animation: exit
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            'data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95 data-[ending-style]:animate-out',
             // Duration
             'duration-100',
             className,
@@ -271,14 +256,11 @@ function MenubarSubContent({
   )
 }
 
-function MenubarShortcut({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLSpanElement>) {
+function MenubarShortcut({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
       data-slot="menubar-shortcut"
-      className={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)}
+      className={cn('ml-auto text-muted-foreground text-xs tracking-widest', className)}
       {...props}
     />
   )

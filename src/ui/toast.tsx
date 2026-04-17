@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { toast as sonnerToast } from 'sonner'
 import { XIcon } from 'lucide-react'
+import type * as React from 'react'
+import { toast as sonnerToast } from 'sonner'
 import { cn } from '@/lib/utils'
 
 // ── Primitive building blocks ────────────────────────────────────────────────
@@ -15,7 +15,7 @@ function ToastViewport({ className, ...props }: React.HTMLAttributes<HTMLOListEl
       data-slot="toast-viewport"
       className={cn(
         'fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse gap-2 p-4',
-        'sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]',
+        'sm:top-auto sm:right-0 sm:bottom-0 sm:flex-col md:max-w-[420px]',
         className,
       )}
       {...props}
@@ -45,15 +45,12 @@ function Toast({ className, variant = 'default', ...props }: ToastProps) {
   )
 }
 
-function ToastAction({
-  className,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+function ToastAction({ className, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       data-slot="toast-action"
       className={cn(
-        'inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium',
+        'inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 font-medium text-sm',
         'transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
         'disabled:pointer-events-none disabled:opacity-50',
         'group-[.destructive]:border-destructive-foreground/30 group-[.destructive]:hover:border-destructive/30',
@@ -66,15 +63,12 @@ function ToastAction({
   )
 }
 
-function ToastClose({
-  className,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+function ToastClose({ className, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       data-slot="toast-close"
       className={cn(
-        'absolute right-1 top-1 rounded-md p-1 opacity-0 transition-opacity',
+        'absolute top-1 right-1 rounded-md p-1 opacity-0 transition-opacity',
         'text-foreground/50 hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2',
         'group-hover:opacity-100',
         'group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50',
@@ -91,24 +85,13 @@ function ToastClose({
 
 function ToastTitle({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div
-      data-slot="toast-title"
-      className={cn('text-sm font-semibold', className)}
-      {...props}
-    />
+    <div data-slot="toast-title" className={cn('font-semibold text-sm', className)} {...props} />
   )
 }
 
-function ToastDescription({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLParagraphElement>) {
+function ToastDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p
-      data-slot="toast-description"
-      className={cn('text-sm opacity-90', className)}
-      {...props}
-    />
+    <p data-slot="toast-description" className={cn('text-sm opacity-90', className)} {...props} />
   )
 }
 
@@ -138,16 +121,14 @@ function useToast() {
     })
 
   return {
-    toast: (message: string, options?: ToastCallOptions) =>
-      call(sonnerToast, message, options),
+    toast: (message: string, options?: ToastCallOptions) => call(sonnerToast, message, options),
     success: (message: string, options?: ToastCallOptions) =>
       call(sonnerToast.success, message, options),
     error: (message: string, options?: ToastCallOptions) =>
       call(sonnerToast.error, message, options),
     warning: (message: string, options?: ToastCallOptions) =>
       call(sonnerToast.warning, message, options),
-    info: (message: string, options?: ToastCallOptions) =>
-      call(sonnerToast.info, message, options),
+    info: (message: string, options?: ToastCallOptions) => call(sonnerToast.info, message, options),
     dismiss: (id?: string | number) => sonnerToast.dismiss(id),
   }
 }

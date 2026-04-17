@@ -1,4 +1,4 @@
-import * as React from 'react'
+import type * as React from 'react'
 import { cn } from '@/lib/utils'
 
 function Avatar({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
@@ -13,11 +13,7 @@ function Avatar({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) 
 
 function AvatarImage({ className, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) {
   return (
-    <img
-      data-slot="avatar-image"
-      className={cn('aspect-square size-full', className)}
-      {...props}
-    />
+    <img data-slot="avatar-image" className={cn('aspect-square size-full', className)} {...props} />
   )
 }
 
@@ -25,7 +21,10 @@ function AvatarFallback({ className, ...props }: React.HTMLAttributes<HTMLSpanEl
   return (
     <span
       data-slot="avatar-fallback"
-      className={cn('bg-muted flex size-full items-center justify-center rounded-full text-xs font-medium', className)}
+      className={cn(
+        'flex size-full items-center justify-center rounded-full bg-muted font-medium text-xs',
+        className,
+      )}
       {...props}
     />
   )

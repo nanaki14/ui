@@ -1,7 +1,7 @@
-import * as React from 'react'
 import { Dialog } from '@base-ui/react/dialog'
-import { XIcon } from 'lucide-react'
 import { cva, type VariantProps } from 'class-variance-authority'
+import { XIcon } from 'lucide-react'
+import type * as React from 'react'
 import { cn } from '@/lib/utils'
 
 const sheetVariants = cva(
@@ -73,9 +73,9 @@ function SheetContent({
           // Visual
           'bg-black/50',
           // Animation: enter
-          'data-[starting-style]:animate-in data-[starting-style]:fade-in-0',
+          'data-[starting-style]:fade-in-0 data-[starting-style]:animate-in',
           // Animation: exit
-          'data-[ending-style]:animate-out data-[ending-style]:fade-out-0',
+          'data-[ending-style]:fade-out-0 data-[ending-style]:animate-out',
           // Duration
           'duration-300',
         )}
@@ -97,7 +97,7 @@ function SheetContent({
             'transition-opacity',
             // Hover & focus
             'hover:opacity-100',
-            'focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-none',
+            'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
             // Disabled
             'disabled:pointer-events-none',
           )}
@@ -134,7 +134,7 @@ function SheetTitle({ className, ...props }: React.ComponentProps<typeof Dialog.
   return (
     <Dialog.Title
       data-slot="sheet-title"
-      className={cn('text-lg font-semibold leading-none tracking-tight', className)}
+      className={cn('font-semibold text-lg leading-none tracking-tight', className)}
       {...props}
     />
   )

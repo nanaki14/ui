@@ -1,6 +1,6 @@
-import * as React from 'react'
 import { ContextMenu } from '@base-ui/react/context-menu'
 import { CheckIcon, ChevronRightIcon } from 'lucide-react'
+import type * as React from 'react'
 import { cn } from '@/lib/utils'
 
 function ContextMenuRoot({ ...props }: React.ComponentProps<typeof ContextMenu.Root>) {
@@ -11,15 +11,11 @@ function ContextMenuTrigger({ ...props }: React.ComponentProps<typeof ContextMen
   return <ContextMenu.Trigger data-slot="context-menu-trigger" {...props} />
 }
 
-function ContextMenuGroup({
-  ...props
-}: React.ComponentProps<typeof ContextMenu.Group>) {
+function ContextMenuGroup({ ...props }: React.ComponentProps<typeof ContextMenu.Group>) {
   return <ContextMenu.Group data-slot="context-menu-group" {...props} />
 }
 
-function ContextMenuRadioGroup({
-  ...props
-}: React.ComponentProps<typeof ContextMenu.RadioGroup>) {
+function ContextMenuRadioGroup({ ...props }: React.ComponentProps<typeof ContextMenu.RadioGroup>) {
   return <ContextMenu.RadioGroup data-slot="context-menu-radio-group" {...props} />
 }
 
@@ -72,9 +68,9 @@ function ContextMenuSubContent({
             // Visual
             'bg-popover text-popover-foreground shadow-lg',
             // Animation: enter
-            'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            'data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95 data-[starting-style]:animate-in',
             // Animation: exit
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            'data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95 data-[ending-style]:animate-out',
             // Duration
             'duration-100',
             className,
@@ -101,9 +97,9 @@ function ContextMenuContent({
             // Visual
             'bg-popover text-popover-foreground shadow-md',
             // Animation: enter
-            'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            'data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95 data-[starting-style]:animate-in',
             // Animation: exit
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            'data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95 data-[ending-style]:animate-out',
             // Duration
             'duration-100',
             className,
@@ -204,7 +200,7 @@ function ContextMenuRadioItem({
     >
       <span className="absolute left-2 flex size-3.5 items-center justify-center">
         <ContextMenu.RadioItemIndicator>
-          <span className="bg-current size-2 rounded-full" />
+          <span className="size-2 rounded-full bg-current" />
         </ContextMenu.RadioItemIndicator>
       </span>
       {children}
@@ -221,7 +217,7 @@ function ContextMenuLabel({
     <ContextMenu.GroupLabel
       data-slot="context-menu-label"
       data-inset={inset}
-      className={cn('px-2 py-1.5 text-xs font-semibold data-[inset]:pl-8', className)}
+      className={cn('px-2 py-1.5 font-semibold text-xs data-[inset]:pl-8', className)}
       {...props}
     />
   )
@@ -234,7 +230,7 @@ function ContextMenuSeparator({
   return (
     <ContextMenu.Separator
       data-slot="context-menu-separator"
-      className={cn('bg-muted -mx-1 my-1 h-px', className)}
+      className={cn('-mx-1 my-1 h-px bg-muted', className)}
       {...props}
     />
   )
@@ -244,7 +240,7 @@ function ContextMenuShortcut({ className, ...props }: React.HTMLAttributes<HTMLS
   return (
     <span
       data-slot="context-menu-shortcut"
-      className={cn('text-muted-foreground ml-auto text-xs tracking-widest', className)}
+      className={cn('ml-auto text-muted-foreground text-xs tracking-widest', className)}
       {...props}
     />
   )

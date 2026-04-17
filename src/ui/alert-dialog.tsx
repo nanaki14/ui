@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { AlertDialog } from '@base-ui/react/alert-dialog'
+import type * as React from 'react'
 import { cn } from '@/lib/utils'
 
 function AlertDialogRoot({ ...props }: React.ComponentProps<typeof AlertDialog.Root>) {
@@ -24,9 +24,9 @@ function AlertDialogContent({
           // Visual
           'bg-black/50',
           // Animation: enter
-          'data-[starting-style]:animate-in data-[starting-style]:fade-in-0',
+          'data-[starting-style]:fade-in-0 data-[starting-style]:animate-in',
           // Animation: exit
-          'data-[ending-style]:animate-out data-[ending-style]:fade-out-0',
+          'data-[ending-style]:fade-out-0 data-[ending-style]:animate-out',
           // Duration
           'duration-200',
         )}
@@ -37,11 +37,11 @@ function AlertDialogContent({
           // Layout
           'fixed top-1/2 left-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 p-6',
           // Visual
-          'bg-background rounded-lg border shadow-lg',
+          'rounded-lg border bg-background shadow-lg',
           // Animation: enter
-          'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+          'data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95 data-[starting-style]:animate-in',
           // Animation: exit
-          'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+          'data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95 data-[ending-style]:animate-out',
           // Duration
           'duration-200',
           className,
@@ -74,14 +74,11 @@ function AlertDialogFooter({ className, ...props }: React.HTMLAttributes<HTMLDiv
   )
 }
 
-function AlertDialogTitle({
-  className,
-  ...props
-}: React.ComponentProps<typeof AlertDialog.Title>) {
+function AlertDialogTitle({ className, ...props }: React.ComponentProps<typeof AlertDialog.Title>) {
   return (
     <AlertDialog.Title
       data-slot="alert-dialog-title"
-      className={cn('text-lg font-semibold leading-none tracking-tight', className)}
+      className={cn('font-semibold text-lg leading-none tracking-tight', className)}
       {...props}
     />
   )
@@ -111,7 +108,7 @@ function AlertDialogAction({
         // Layout
         'inline-flex h-9 items-center justify-center rounded-md px-4 py-2',
         // Visual
-        'bg-primary text-primary-foreground text-sm font-medium',
+        'bg-primary font-medium text-primary-foreground text-sm',
         // Transition
         'transition-colors',
         // Hover
@@ -138,7 +135,7 @@ function AlertDialogCancel({
         // Layout
         'inline-flex h-9 items-center justify-center rounded-md border px-4 py-2',
         // Visual
-        'border-input bg-background text-sm font-medium',
+        'border-input bg-background font-medium text-sm',
         // Transition
         'transition-colors',
         // Hover

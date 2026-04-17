@@ -1,26 +1,14 @@
 import { Tabs } from '@base-ui/react/tabs'
 import { cn } from '@/lib/utils'
 
-function TabsRoot({
-  className,
-  ...props
-}: React.ComponentProps<typeof Tabs.Root>) {
-  return (
-    <Tabs.Root
-      data-slot='tabs'
-      className={cn('flex flex-col gap-2', className)}
-      {...props}
-    />
-  )
+function TabsRoot({ className, ...props }: React.ComponentProps<typeof Tabs.Root>) {
+  return <Tabs.Root data-slot="tabs" className={cn('flex flex-col gap-2', className)} {...props} />
 }
 
-function TabsList({
-  className,
-  ...props
-}: React.ComponentProps<typeof Tabs.List>) {
+function TabsList({ className, ...props }: React.ComponentProps<typeof Tabs.List>) {
   return (
     <Tabs.List
-      data-slot='tabs-list'
+      data-slot="tabs-list"
       className={cn(
         // Layout
         'inline-flex h-9 w-fit items-center justify-center rounded-lg p-1',
@@ -33,18 +21,15 @@ function TabsList({
   )
 }
 
-function TabsTrigger({
-  className,
-  ...props
-}: React.ComponentProps<typeof Tabs.Tab>) {
+function TabsTrigger({ className, ...props }: React.ComponentProps<typeof Tabs.Tab>) {
   return (
     <Tabs.Tab
-      data-slot='tabs-trigger'
+      data-slot="tabs-trigger"
       className={cn(
         // Layout
         'inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1',
         // Visual
-        'text-sm font-medium',
+        'font-medium text-sm',
         // Transition
         'transition-all',
         // Selected state
@@ -60,20 +45,17 @@ function TabsTrigger({
   )
 }
 
-function TabsContent({
-  className,
-  ...props
-}: React.ComponentProps<typeof Tabs.Panel>) {
+function TabsContent({ className, ...props }: React.ComponentProps<typeof Tabs.Panel>) {
   return (
     <Tabs.Panel
-      data-slot='tabs-content'
+      data-slot="tabs-content"
       className={cn(
         // Layout
         'mt-2',
         // Animation: enter
-        'data-[starting-style]:animate-in data-[starting-style]:fade-in-0',
+        'data-[starting-style]:fade-in-0 data-[starting-style]:animate-in',
         // Animation: exit
-        'data-[ending-style]:animate-out data-[ending-style]:fade-out-0',
+        'data-[ending-style]:fade-out-0 data-[ending-style]:animate-out',
         // Duration
         'duration-150',
         // Focus

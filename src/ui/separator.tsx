@@ -8,10 +8,10 @@ function SeparatorComponent({
 }: React.ComponentProps<typeof Separator>) {
   return (
     <Separator
-      data-slot='separator'
+      data-slot="separator"
       orientation={orientation}
       className={cn(
-        'bg-border shrink-0',
+        'shrink-0 bg-border',
         orientation === 'horizontal' ? 'h-px w-full' : 'h-full w-px',
         className,
       )}

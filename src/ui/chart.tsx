@@ -1,9 +1,5 @@
 import * as React from 'react'
-import {
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
-} from 'recharts'
+import { Legend, ResponsiveContainer, Tooltip } from 'recharts'
 import { cn } from '@/lib/utils'
 
 type ValueType = number | string | Array<number | string>
@@ -23,7 +19,13 @@ type TooltipProps = {
   payload?: TooltipPayloadItem[]
   label?: string
   labelFormatter?: (label: string, payload: TooltipPayloadItem[]) => React.ReactNode
-  formatter?: (value: ValueType, name: NameType, item: TooltipPayloadItem, index: number, payload: TooltipPayloadItem[]) => React.ReactNode
+  formatter?: (
+    value: ValueType,
+    name: NameType,
+    item: TooltipPayloadItem,
+    index: number,
+    payload: TooltipPayloadItem[],
+  ) => React.ReactNode
 }
 
 export type ChartConfig = {
@@ -57,22 +59,19 @@ function ChartContainer({
   config: ChartConfig
   children: React.ComponentProps<typeof ResponsiveContainer>['children']
 }) {
-  const colorVars = Object.entries(config).reduce<Record<string, string>>(
-    (vars, [key, value]) => {
-      if (value.color) {
-        vars[`--color-${key}`] = value.color
-      }
-      return vars
-    },
-    {},
-  )
+  const colorVars = Object.entries(config).reduce<Record<string, string>>((vars, [key, value]) => {
+    if (value.color) {
+      vars[`--color-${key}`] = value.color
+    }
+    return vars
+  }, {})
 
   return (
     <ChartContext.Provider value={{ config }}>
       <div
         data-slot="chart"
         className={cn(
-          "[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border flex aspect-video justify-center text-xs",
+          "flex aspect-video justify-center text-xs [&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border",
           className,
         )}
         style={colorVars as React.CSSProperties}
@@ -121,13 +120,11 @@ function ChartTooltipContent({
   return (
     <div
       className={cn(
-        'bg-background border-border/50 grid min-w-[8rem] items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl',
+        'grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl',
         className,
       )}
     >
-      {resolvedLabel && (
-        <div className="font-medium">{resolvedLabel}</div>
-      )}
+      {resolvedLabel && <div className="font-medium">{resolvedLabel}</div>}
       <div className="grid gap-1.5">
         {payload.map((item, index) => {
           const key = nameKey
@@ -147,8 +144,7 @@ function ChartTooltipContent({
                     'shrink-0 rounded-[2px] border-[--color-border] bg-[--color-bg]',
                     indicator === 'dot' && 'mt-0.5 size-2.5 rounded-full',
                     indicator === 'line' && 'w-1',
-                    indicator === 'dashed' &&
-                      'w-0 border-[1.5px] border-dashed bg-transparent',
+                    indicator === 'dashed' && 'w-0 border-[1.5px] border-dashed bg-transparent',
                   )}
                   style={
                     {
@@ -159,11 +155,9 @@ function ChartTooltipContent({
                 />
               )}
               <div className="flex flex-1 justify-between leading-none">
-                <span className="text-muted-foreground">
-                  {itemConfig.label ?? key}
-                </span>
+                <span className="text-muted-foreground">{itemConfig.label ?? key}</span>
                 {item.value !== undefined && (
-                  <span className="font-mono font-medium tabular-nums text-foreground">
+                  <span className="font-medium font-mono text-foreground tabular-nums">
                     {formatter
                       ? formatter(item.value, key, item, index, payload)
                       : Array.isArray(item.value)
@@ -201,12 +195,7 @@ function ChartLegendContent({
   }
 
   return (
-    <div
-      className={cn(
-        'flex items-center justify-center gap-4 text-xs',
-        className,
-      )}
-    >
+    <div className={cn('flex items-center justify-center gap-4 text-xs', className)}>
       {payload.map((item) => {
         const key = nameKey
           ? String(item[nameKey as keyof typeof item] ?? item.value ?? item.dataKey)
@@ -219,9 +208,7 @@ function ChartLegendContent({
               className="size-2 shrink-0 rounded-[2px]"
               style={{ backgroundColor: item.color ?? itemConfig.color }}
             />
-            <span className="text-muted-foreground">
-              {itemConfig.label ?? key}
-            </span>
+            <span className="text-muted-foreground">{itemConfig.label ?? key}</span>
           </div>
         )
       })}
@@ -229,10 +216,4 @@ function ChartLegendContent({
   )
 }
 
-export {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
-}
+export { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent }

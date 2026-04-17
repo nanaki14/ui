@@ -2,30 +2,18 @@ import { Accordion } from '@base-ui/react/accordion'
 import { ChevronDownIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-function AccordionRoot({
-  className,
-  ...props
-}: React.ComponentProps<typeof Accordion.Root>) {
+function AccordionRoot({ className, ...props }: React.ComponentProps<typeof Accordion.Root>) {
   return (
     <Accordion.Root
-      data-slot='accordion'
+      data-slot="accordion"
       className={cn('divide-y divide-border', className)}
       {...props}
     />
   )
 }
 
-function AccordionItem({
-  className,
-  ...props
-}: React.ComponentProps<typeof Accordion.Item>) {
-  return (
-    <Accordion.Item
-      data-slot='accordion-item'
-      className={cn('', className)}
-      {...props}
-    />
-  )
+function AccordionItem({ className, ...props }: React.ComponentProps<typeof Accordion.Item>) {
+  return <Accordion.Item data-slot="accordion-item" className={cn('', className)} {...props} />
 }
 
 function AccordionTrigger({
@@ -34,14 +22,14 @@ function AccordionTrigger({
   ...props
 }: React.ComponentProps<typeof Accordion.Trigger>) {
   return (
-    <Accordion.Header className='flex'>
+    <Accordion.Header className="flex">
       <Accordion.Trigger
-        data-slot='accordion-trigger'
+        data-slot="accordion-trigger"
         className={cn(
           // Layout
           'flex flex-1 items-center justify-between py-4 text-left',
           // Visual
-          'text-sm font-medium',
+          'font-medium text-sm',
           // Transition
           'transition-all',
           // Hover
@@ -53,7 +41,7 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <ChevronDownIcon className='text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-px transition-transform duration-200' />
+        <ChevronDownIcon className="pointer-events-none size-4 shrink-0 translate-y-px text-muted-foreground transition-transform duration-200" />
       </Accordion.Trigger>
     </Accordion.Header>
   )
@@ -66,7 +54,7 @@ function AccordionContent({
 }: React.ComponentProps<typeof Accordion.Panel>) {
   return (
     <Accordion.Panel
-      data-slot='accordion-content'
+      data-slot="accordion-content"
       className={cn(
         // Layout
         'overflow-hidden',
@@ -80,7 +68,7 @@ function AccordionContent({
       )}
       {...props}
     >
-      <div className='pt-0 pb-4'>{children}</div>
+      <div className="pt-0 pb-4">{children}</div>
     </Accordion.Panel>
   )
 }

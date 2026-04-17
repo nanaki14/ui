@@ -8,14 +8,14 @@ function ProgressComponent({
 }: React.ComponentProps<typeof Progress.Root>) {
   return (
     <Progress.Root
-      data-slot='progress'
+      data-slot="progress"
       value={value}
-      className={cn('bg-secondary relative h-2 w-full overflow-hidden rounded-full', className)}
+      className={cn('relative h-2 w-full overflow-hidden rounded-full bg-secondary', className)}
       {...props}
     >
-      <Progress.Track className='h-full w-full overflow-hidden'>
+      <Progress.Track className="h-full w-full overflow-hidden">
         <Progress.Indicator
-          className='h-full bg-primary transition-all duration-500'
+          className="h-full bg-primary transition-all duration-500"
           style={{ width: `${value ?? 0}%` }}
         />
       </Progress.Track>

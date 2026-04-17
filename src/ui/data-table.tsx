@@ -1,28 +1,21 @@
-import * as React from 'react'
 import {
+  type ColumnDef,
+  type ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-  type ColumnDef,
-  type ColumnFiltersState,
   type PaginationState,
   type SortingState,
+  useReactTable,
   type VisibilityState,
 } from '@tanstack/react-table'
-import { ChevronDownIcon, ChevronUpIcon, ChevronsUpDownIcon } from 'lucide-react'
+import { ChevronDownIcon, ChevronsUpDownIcon, ChevronUpIcon } from 'lucide-react'
+import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/ui/button'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/ui/table'
 
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[]
@@ -81,13 +74,9 @@ function DataTable<TData, TValue>({
         <div className="flex items-center">
           <input
             placeholder={`Filter by ${filterColumn}…`}
-            value={
-              (table.getColumn(filterColumn)?.getFilterValue() as string) ?? ''
-            }
-            onChange={(e) =>
-              table.getColumn(filterColumn)?.setFilterValue(e.target.value)
-            }
-            className="border-input placeholder:text-muted-foreground flex h-9 w-full max-w-sm rounded-md border bg-transparent px-3 py-1 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]"
+            value={(table.getColumn(filterColumn)?.getFilterValue() as string) ?? ''}
+            onChange={(e) => table.getColumn(filterColumn)?.setFilterValue(e.target.value)}
+            className="flex h-9 w-full max-w-sm rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
           />
         </div>
       )}
@@ -108,14 +97,11 @@ function DataTable<TData, TValue>({
                           type="button"
                           onClick={header.column.getToggleSortingHandler()}
                           className={cn(
-                            'flex items-center gap-1 font-medium select-none hover:text-foreground transition-colors',
+                            'flex select-none items-center gap-1 font-medium transition-colors hover:text-foreground',
                             sorted && 'text-foreground',
                           )}
                         >
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
+                          {flexRender(header.column.columnDef.header, header.getContext())}
                           {sorted === 'asc' ? (
                             <ChevronUpIcon className="size-3.5" />
                           ) : sorted === 'desc' ? (
@@ -125,10 +111,7 @@ function DataTable<TData, TValue>({
                           )}
                         </button>
                       ) : (
-                        flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )
+                        flexRender(header.column.columnDef.header, header.getContext())
                       )}
                     </TableHead>
                   )
@@ -139,16 +122,10 @@ function DataTable<TData, TValue>({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() ? 'selected' : undefined}
-                >
+                <TableRow key={row.id} data-state={row.getIsSelected() ? 'selected' : undefined}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -182,9 +159,8 @@ function DataTable<TData, TValue>({
             >
               Previous
             </Button>
-            <span className="text-sm text-muted-foreground">
-              Page {table.getState().pagination.pageIndex + 1} of{' '}
-              {table.getPageCount()}
+            <span className="text-muted-foreground text-sm">
+              Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
             </span>
             <Button
               variant="outline"

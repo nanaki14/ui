@@ -1,6 +1,6 @@
-import * as React from 'react'
 import { Menu } from '@base-ui/react/menu'
 import { CheckIcon, ChevronRightIcon } from 'lucide-react'
+import type * as React from 'react'
 import { cn } from '@/lib/utils'
 
 function DropdownMenu({ ...props }: React.ComponentProps<typeof Menu.Root>) {
@@ -53,10 +53,7 @@ function DropdownMenuSubTrigger({
   )
 }
 
-function DropdownMenuSubContent({
-  className,
-  ...props
-}: React.ComponentProps<typeof Menu.Popup>) {
+function DropdownMenuSubContent({ className, ...props }: React.ComponentProps<typeof Menu.Popup>) {
   return (
     <Menu.Portal>
       <Menu.Positioner>
@@ -68,9 +65,9 @@ function DropdownMenuSubContent({
             // Visual
             'bg-popover text-popover-foreground shadow-lg',
             // Animation: enter
-            'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            'data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95 data-[starting-style]:animate-in',
             // Animation: exit
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            'data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95 data-[ending-style]:animate-out',
             // Duration
             'duration-100',
             className,
@@ -98,9 +95,9 @@ function DropdownMenuContent({
             // Visual
             'bg-popover text-popover-foreground shadow-md',
             // Animation: enter
-            'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            'data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95 data-[starting-style]:animate-in',
             // Animation: exit
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            'data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95 data-[ending-style]:animate-out',
             // Animation: slide direction
             'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
             // Duration
@@ -203,7 +200,7 @@ function DropdownMenuRadioItem({
     >
       <span className="absolute left-2 flex size-3.5 items-center justify-center">
         <Menu.RadioItemIndicator>
-          <span className="bg-current size-2 rounded-full" />
+          <span className="size-2 rounded-full bg-current" />
         </Menu.RadioItemIndicator>
       </span>
       {children}
@@ -220,20 +217,20 @@ function DropdownMenuLabel({
     <Menu.GroupLabel
       data-slot="dropdown-menu-label"
       data-inset={inset}
-      className={cn(
-        'px-2 py-1.5 text-xs font-semibold data-[inset]:pl-8',
-        className,
-      )}
+      className={cn('px-2 py-1.5 font-semibold text-xs data-[inset]:pl-8', className)}
       {...props}
     />
   )
 }
 
-function DropdownMenuSeparator({ className, ...props }: React.ComponentProps<typeof Menu.Separator>) {
+function DropdownMenuSeparator({
+  className,
+  ...props
+}: React.ComponentProps<typeof Menu.Separator>) {
   return (
     <Menu.Separator
       data-slot="dropdown-menu-separator"
-      className={cn('bg-muted -mx-1 my-1 h-px', className)}
+      className={cn('-mx-1 my-1 h-px bg-muted', className)}
       {...props}
     />
   )
@@ -243,7 +240,7 @@ function DropdownMenuShortcut({ className, ...props }: React.HTMLAttributes<HTML
   return (
     <span
       data-slot="dropdown-menu-shortcut"
-      className={cn('text-muted-foreground ml-auto text-xs tracking-widest', className)}
+      className={cn('ml-auto text-muted-foreground text-xs tracking-widest', className)}
       {...props}
     />
   )

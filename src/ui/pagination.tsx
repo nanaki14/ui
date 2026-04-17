@@ -1,8 +1,8 @@
-import * as React from 'react'
+import type { VariantProps } from 'class-variance-authority'
 import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from 'lucide-react'
+import type * as React from 'react'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/ui/button'
-import type { VariantProps } from 'class-variance-authority'
 
 function Pagination({ className, ...props }: React.ComponentProps<'nav'>) {
   return (

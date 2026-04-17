@@ -8,8 +8,7 @@ const toggleVariants = cva(
     variants: {
       variant: {
         default: 'bg-transparent',
-        outline:
-          'border border-input bg-transparent hover:bg-accent hover:text-accent-foreground',
+        outline: 'border border-input bg-transparent hover:bg-accent hover:text-accent-foreground',
       },
       size: {
         default: 'h-9 px-3',
@@ -29,11 +28,10 @@ function ToggleComponent({
   variant,
   size,
   ...props
-}: React.ComponentProps<typeof Toggle> &
-  VariantProps<typeof toggleVariants>) {
+}: React.ComponentProps<typeof Toggle> & VariantProps<typeof toggleVariants>) {
   return (
     <Toggle
-      data-slot='toggle'
+      data-slot="toggle"
       className={cn(toggleVariants({ variant, size }), className)}
       {...props}
     />

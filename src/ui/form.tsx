@@ -1,13 +1,13 @@
+import { Field } from '@base-ui/react/field'
 import * as React from 'react'
 import {
   Controller,
-  FormProvider,
-  useFormContext,
   type ControllerProps,
   type FieldPath,
   type FieldValues,
+  FormProvider,
+  useFormContext,
 } from 'react-hook-form'
-import { Field } from '@base-ui/react/field'
 import { cn } from '@/lib/utils'
 
 const Form = FormProvider
@@ -19,9 +19,7 @@ type FormFieldContextValue<
   name: TName
 }
 
-const FormFieldContext = React.createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue,
-)
+const FormFieldContext = React.createContext<FormFieldContextValue>({} as FormFieldContextValue)
 
 function FormField<
   TFieldValues extends FieldValues = FieldValues,
@@ -38,9 +36,7 @@ type FormItemContextValue = {
   id: string
 }
 
-const FormItemContext = React.createContext<FormItemContextValue>(
-  {} as FormItemContextValue,
-)
+const FormItemContext = React.createContext<FormItemContextValue>({} as FormItemContextValue)
 
 function useFormField() {
   const fieldContext = React.useContext(FormFieldContext)
@@ -70,19 +66,12 @@ function FormItem({ className, ...props }: React.ComponentProps<'div'>) {
 
   return (
     <FormItemContext.Provider value={{ id }}>
-      <Field.Root
-        data-slot="form-item"
-        className={cn('grid gap-2', className)}
-        {...props}
-      />
+      <Field.Root data-slot="form-item" className={cn('grid gap-2', className)} {...props} />
     </FormItemContext.Provider>
   )
 }
 
-function FormLabel({
-  className,
-  ...props
-}: React.ComponentProps<typeof Field.Label>) {
+function FormLabel({ className, ...props }: React.ComponentProps<typeof Field.Label>) {
   const { error, formItemId } = useFormField()
 
   return (
@@ -90,7 +79,7 @@ function FormLabel({
       data-slot="form-label"
       htmlFor={formItemId}
       className={cn(
-        'flex items-center gap-2 text-sm font-medium leading-none select-none',
+        'flex select-none items-center gap-2 font-medium text-sm leading-none',
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         error && 'text-destructive',
         className,
@@ -107,21 +96,14 @@ function FormControl({ ...props }: React.ComponentProps<typeof Field.Control>) {
     <Field.Control
       data-slot="form-control"
       id={formItemId}
-      aria-describedby={
-        !error
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
-      }
+      aria-describedby={!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`}
       aria-invalid={!!error}
       {...props}
     />
   )
 }
 
-function FormDescription({
-  className,
-  ...props
-}: React.ComponentProps<'p'>) {
+function FormDescription({ className, ...props }: React.ComponentProps<'p'>) {
   const { formDescriptionId } = useFormField()
 
   return (
@@ -134,11 +116,7 @@ function FormDescription({
   )
 }
 
-function FormMessage({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<'p'>) {
+function FormMessage({ className, children, ...props }: React.ComponentProps<'p'>) {
   const { error, formMessageId } = useFormField()
   const body = error ? String(error?.message ?? error) : children
 

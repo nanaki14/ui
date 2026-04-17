@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { PanelLeftIcon } from 'lucide-react'
+import * as React from 'react'
 import { cn } from '@/lib/utils'
 
 type SidebarPlacement = 'left' | 'right'
@@ -74,12 +74,7 @@ interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
   collapsible?: boolean
 }
 
-function Sidebar({
-  className,
-  children,
-  collapsible = true,
-  ...props
-}: SidebarProps) {
+function Sidebar({ className, children, collapsible = true, ...props }: SidebarProps) {
   const { open, placement } = useSidebar()
 
   return (
@@ -90,11 +85,7 @@ function Sidebar({
       className={cn(
         'relative flex h-svh flex-col border-border bg-sidebar transition-[width] duration-300 ease-in-out',
         placement === 'right' ? 'border-l' : 'border-r',
-        collapsible
-          ? open
-            ? 'w-64'
-            : 'w-0 overflow-hidden'
-          : 'w-64',
+        collapsible ? (open ? 'w-64' : 'w-0 overflow-hidden') : 'w-64',
         className,
       )}
       {...props}
@@ -144,15 +135,12 @@ function SidebarGroup({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
   )
 }
 
-function SidebarGroupLabel({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+function SidebarGroupLabel({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       data-slot="sidebar-group-label"
       className={cn(
-        'px-2 py-1 text-xs font-semibold uppercase tracking-wider text-sidebar-foreground/60',
+        'px-2 py-1 font-semibold text-sidebar-foreground/60 text-xs uppercase tracking-wider',
         className,
       )}
       {...props}
@@ -160,10 +148,7 @@ function SidebarGroupLabel({
   )
 }
 
-function SidebarGroupContent({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+function SidebarGroupContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       data-slot="sidebar-group-content"
@@ -184,13 +169,7 @@ function SidebarMenu({ className, ...props }: React.HTMLAttributes<HTMLUListElem
 }
 
 function SidebarMenuItem({ className, ...props }: React.HTMLAttributes<HTMLLIElement>) {
-  return (
-    <li
-      data-slot="sidebar-menu-item"
-      className={cn('relative', className)}
-      {...props}
-    />
-  )
+  return <li data-slot="sidebar-menu-item" className={cn('relative', className)} {...props} />
 }
 
 interface SidebarMenuButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -198,12 +177,7 @@ interface SidebarMenuButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   tooltip?: string
 }
 
-function SidebarMenuButton({
-  className,
-  isActive,
-  children,
-  ...props
-}: SidebarMenuButtonProps) {
+function SidebarMenuButton({ className, isActive, children, ...props }: SidebarMenuButtonProps) {
   return (
     <button
       data-slot="sidebar-menu-button"
@@ -214,7 +188,7 @@ function SidebarMenuButton({
         'focus-visible:ring-2 focus-visible:ring-sidebar-ring',
         'disabled:pointer-events-none disabled:opacity-50',
         'data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground',
-        '[&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0',
+        '[&_svg:not([class*="size-"])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0',
         className,
       )}
       {...props}
@@ -224,10 +198,7 @@ function SidebarMenuButton({
   )
 }
 
-function SidebarTrigger({
-  className,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+function SidebarTrigger({ className, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   const { open, setOpen } = useSidebar()
 
   return (

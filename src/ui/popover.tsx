@@ -1,5 +1,5 @@
-import * as React from 'react'
 import { Popover } from '@base-ui/react/popover'
+import type * as React from 'react'
 import { cn } from '@/lib/utils'
 
 function PopoverRoot({ ...props }: React.ComponentProps<typeof Popover.Root>) {
@@ -38,9 +38,9 @@ function PopoverContent({
             // Visual
             'bg-popover text-popover-foreground shadow-md outline-none',
             // Animation: enter
-            'data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95',
+            'data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95 data-[starting-style]:animate-in',
             // Animation: exit
-            'data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95',
+            'data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95 data-[ending-style]:animate-out',
             // Animation: slide direction
             'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
             // Duration
@@ -54,10 +54,4 @@ function PopoverContent({
   )
 }
 
-export {
-  PopoverRoot as Popover,
-  PopoverTrigger,
-  PopoverPortal,
-  PopoverContent,
-  PopoverClose,
-}
+export { PopoverRoot as Popover, PopoverTrigger, PopoverPortal, PopoverContent, PopoverClose }
