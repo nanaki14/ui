@@ -21,6 +21,8 @@ dist-ssr
 *.sln
 *.sw?
 
+storybook-static
+
 # TanStack Router
 src/routeTree.gen.ts
 .tanstack
