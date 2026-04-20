@@ -1,10 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/ui/accordion'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/accordion'
 
 const meta = {
   title: 'UI/Accordion',
@@ -23,9 +18,7 @@ export const Default: Story = {
     <Accordion className="w-[400px]">
       <AccordionItem value="item-1">
         <AccordionTrigger>Is it accessible?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It adheres to the WAI-ARIA design pattern.
-        </AccordionContent>
+        <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
         <AccordionTrigger>Is it styled?</AccordionTrigger>

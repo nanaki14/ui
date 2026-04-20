@@ -18,6 +18,14 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "a11y": {
+        "useAltText": "warn",
+        "useAriaPropsSupportedByRole": "warn",
+        "useSemanticElements": "warn",
+        "useFocusableInteractive": "warn",
+        "useAriaPropsForRole": "warn",
+        "noLabelWithoutControl": "warn"
+      },
       "correctness": {
         "noUnusedVariables": "error",
         "noUnusedPrivateClassMembers": "error",
@@ -25,13 +33,21 @@
         "useHookAtTopLevel": "error"
       },
       "suspicious": {
-        "noExplicitAny": "warn"
+        "noExplicitAny": "warn",
+        "noDangerouslySetInnerHtml": "warn",
+        "noArrayIndexKey": "warn"
       },
       "style": {
         "noDefaultExport": "off"
       },
       "nursery": {
-        "useSortedClasses": "error"
+        "useSortedClasses": {
+          "fix": "safe",
+          "level": "error",
+          "options": {
+            "functions": ["twMerge", "twJoin", "tv", "cn", "clsx"]
+          }
+        }
       }
     }
   },
