@@ -57,3 +57,109 @@ export const Default: Story = {
     </Table>
   ),
 }
+
+export const Simple: Story = {
+  render: () => (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Name</TableHead>
+          <TableHead>Email</TableHead>
+          <TableHead>Role</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>Alice Johnson</TableCell>
+          <TableCell>alice@example.com</TableCell>
+          <TableCell>Admin</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Bob Smith</TableCell>
+          <TableCell>bob@example.com</TableCell>
+          <TableCell>Editor</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Carol Davis</TableCell>
+          <TableCell>carol@example.com</TableCell>
+          <TableCell>Viewer</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  ),
+}
+
+export const WithSelection: Story = {
+  render: () => (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-[100px]">Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {invoices.map((inv, i) => (
+          <TableRow key={inv.invoice} data-state={i === 1 ? 'selected' : undefined}>
+            <TableCell className="font-medium">{inv.invoice}</TableCell>
+            <TableCell>{inv.status}</TableCell>
+            <TableCell>{inv.method}</TableCell>
+            <TableCell className="text-right">{inv.amount}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  ),
+}
+
+export const Scrollable: Story = {
+  render: () => (
+    <div className="w-[480px]">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[80px]">ID</TableHead>
+            <TableHead>Title</TableHead>
+            <TableHead>Owner</TableHead>
+            <TableHead>Updated</TableHead>
+            <TableHead className="text-right">Size</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {Array.from({ length: 12 }).map((_, i) => (
+            <TableRow key={i}>
+              <TableCell className="font-medium">#{String(i + 1).padStart(3, '0')}</TableCell>
+              <TableCell>A fairly long document title #{i + 1}</TableCell>
+              <TableCell>user{i + 1}@example.com</TableCell>
+              <TableCell>2026-04-{String((i % 28) + 1).padStart(2, '0')}</TableCell>
+              <TableCell className="text-right">{(i + 1) * 42} KB</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  ),
+}
+
+export const Empty: Story = {
+  render: () => (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Name</TableHead>
+          <TableHead>Email</TableHead>
+          <TableHead>Role</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell colSpan={3} className="h-24 text-center text-muted-foreground">
+            No results.
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  ),
+}

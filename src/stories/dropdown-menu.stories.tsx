@@ -2,12 +2,18 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from '@/ui/button'
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
 
@@ -24,13 +30,10 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: () => (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline">Open</Button>
-      </DropdownMenuTrigger>
+      <DropdownMenuTrigger render={<Button variant="outline">Open</Button>} />
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
         <DropdownMenuGroup>
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuItem>
             Profile <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
@@ -45,6 +48,59 @@ export const Default: Story = {
         <DropdownMenuItem>
           Log out <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ),
+}
+
+export const WithSubmenu: Story = {
+  render: () => (
+    <DropdownMenu>
+      <DropdownMenuTrigger render={<Button variant="outline">Open</Button>} />
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>More options</DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem>Support</DropdownMenuItem>
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem variant="destructive">Delete account</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ),
+}
+
+export const WithCheckboxItems: Story = {
+  render: () => (
+    <DropdownMenu>
+      <DropdownMenuTrigger render={<Button variant="outline">View</Button>} />
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>Appearance</DropdownMenuLabel>
+          <DropdownMenuCheckboxItem checked>Show Toolbar</DropdownMenuCheckboxItem>
+          <DropdownMenuCheckboxItem>Show Statusbar</DropdownMenuCheckboxItem>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ),
+}
+
+export const WithRadioItems: Story = {
+  render: () => (
+    <DropdownMenu>
+      <DropdownMenuTrigger render={<Button variant="outline">Position</Button>} />
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+          <DropdownMenuRadioGroup value="bottom">
+            <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   ),
