@@ -25,11 +25,11 @@ function ContextMenuTrigger({ className, ...props }: ContextMenuPrimitive.Trigge
 }
 
 function ContextMenuContent({
-  className,
   align = 'start',
   alignOffset = 4,
   side = 'right',
   sideOffset = 0,
+  className,
   ...props
 }: ContextMenuPrimitive.Popup.Props &
   Pick<ContextMenuPrimitive.Positioner.Props, 'align' | 'alignOffset' | 'side' | 'sideOffset'>) {
@@ -45,7 +45,22 @@ function ContextMenuContent({
         <ContextMenuPrimitive.Popup
           data-slot="context-menu-content"
           className={cn(
-            'data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:fade-in-0 data-open:zoom-in-95 data-closed:fade-out-0 data-closed:zoom-out-95 z-50 max-h-(--available-height) min-w-36 origin-(--transform-origin) overflow-y-auto overflow-x-hidden rounded-lg bg-popover p-1 text-popover-foreground shadow-md outline-none ring-1 ring-foreground/10 duration-100 data-closed:animate-out data-open:animate-in',
+            // Layout
+            'z-50 max-h-(--available-height) min-w-36 overflow-y-auto overflow-x-hidden p-1',
+            // Visual
+            'rounded-lg bg-popover text-popover-foreground shadow-md outline-none ring-1 ring-foreground/10',
+            // Transform origin
+            'origin-(--transform-origin)',
+            // Animation
+            'duration-100 ease-out-quad data-closed:animate-out data-open:animate-in data-closed:overflow-hidden',
+            // Animation: enter
+            'data-open:fade-in-0 data-open:zoom-in-95 data-open:blur-in-sm',
+            // Animation: exit
+            'data-closed:fade-out-0 data-closed:zoom-out-95 data-closed:blur-out-sm',
+            // Animation: slide by side
+            'data-[side=top]:slide-in-from-bottom-2 data-[side=bottom]:slide-in-from-top-2',
+            'data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2',
+            'data-[side=inline-start]:slide-in-from-right-2 data-[side=inline-end]:slide-in-from-left-2',
             className,
           )}
           {...props}
@@ -71,7 +86,12 @@ function ContextMenuLabel({
       data-slot="context-menu-label"
       data-inset={inset}
       className={cn(
-        'px-1.5 py-1 font-medium text-muted-foreground text-xs data-inset:pl-7',
+        // Layout
+        'px-1.5 py-1',
+        // Visual
+        'font-medium text-muted-foreground text-xs',
+        // Inset
+        'data-inset:pl-7',
         className,
       )}
       {...props}
@@ -94,7 +114,24 @@ function ContextMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "group/context-menu-item relative flex cursor-default select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-inset:pl-7 data-[variant=destructive]:text-destructive data-disabled:opacity-50 data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 focus:*:[svg]:text-accent-foreground data-[variant=destructive]:*:[svg]:text-destructive",
+        // Layout
+        'relative flex cursor-default select-none items-center gap-1.5 rounded-md px-1.5 py-1',
+        // Visual
+        'text-sm outline-hidden',
+        // Focus
+        'focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground',
+        // Disabled
+        'data-disabled:pointer-events-none data-disabled:opacity-50',
+        // Inset
+        'data-inset:pl-7',
+        // Variant: destructive
+        'data-[variant=destructive]:text-destructive data-[variant=destructive]:*:[svg]:text-destructive',
+        'data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive',
+        'dark:data-[variant=destructive]:focus:bg-destructive/20',
+        // Icon
+        "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        // Group
+        'group/context-menu-item',
         className,
       )}
       {...props}
@@ -119,7 +156,19 @@ function ContextMenuSubTrigger({
       data-slot="context-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        "flex cursor-default select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-open:bg-accent data-inset:pl-7 data-open:text-accent-foreground [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        // Layout
+        'flex cursor-default select-none items-center gap-1.5 rounded-md px-1.5 py-1',
+        // Visual
+        'text-sm outline-hidden',
+        // Focus
+        'focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground',
+        // Open state
+        'data-open:bg-accent data-open:text-accent-foreground',
+        'data-popup-open:bg-accent data-popup-open:text-accent-foreground',
+        // Inset
+        'data-inset:pl-7',
+        // Icon
+        "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className,
       )}
       {...props}
@@ -130,12 +179,28 @@ function ContextMenuSubTrigger({
   )
 }
 
-function ContextMenuSubContent({ ...props }: React.ComponentProps<typeof ContextMenuContent>) {
+function ContextMenuSubContent({
+  className,
+  align = 'start',
+  alignOffset = -3,
+  side = 'right',
+  sideOffset = 0,
+  ...props
+}: React.ComponentProps<typeof ContextMenuContent>) {
   return (
     <ContextMenuContent
       data-slot="context-menu-sub-content"
-      className="shadow-lg"
-      side="right"
+      className={cn(
+        // Size override
+        'w-auto min-w-[96px]',
+        // Shadow override
+        'shadow-lg',
+        className,
+      )}
+      align={align}
+      alignOffset={alignOffset}
+      side={side}
+      sideOffset={sideOffset}
       {...props}
     />
   )
@@ -155,13 +220,27 @@ function ContextMenuCheckboxItem({
       data-slot="context-menu-checkbox-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-default select-none items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-inset:pl-7 data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        // Layout
+        'relative flex cursor-default select-none items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5',
+        // Visual
+        'text-sm outline-hidden',
+        // Focus
+        'focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground',
+        // Disabled
+        'data-disabled:pointer-events-none data-disabled:opacity-50',
+        // Inset
+        'data-inset:pl-7',
+        // Icon
+        "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className,
       )}
       checked={checked}
       {...props}
     >
-      <span className="pointer-events-none absolute right-2">
+      <span
+        className="pointer-events-none absolute right-2 flex items-center justify-center"
+        data-slot="context-menu-checkbox-item-indicator"
+      >
         <ContextMenuPrimitive.CheckboxItemIndicator>
           <CheckIcon />
         </ContextMenuPrimitive.CheckboxItemIndicator>
@@ -188,12 +267,23 @@ function ContextMenuRadioItem({
       data-slot="context-menu-radio-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-default select-none items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-inset:pl-7 data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        // Layout
+        'relative flex cursor-default select-none items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5',
+        // Visual
+        'text-sm outline-hidden',
+        // Focus
+        'focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground',
+        // Disabled
+        'data-disabled:pointer-events-none data-disabled:opacity-50',
+        // Inset
+        'data-inset:pl-7',
+        // Icon
+        "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className,
       )}
       {...props}
     >
-      <span className="pointer-events-none absolute right-2">
+      <span className="pointer-events-none absolute right-2 flex items-center justify-center">
         <ContextMenuPrimitive.RadioItemIndicator>
           <CheckIcon />
         </ContextMenuPrimitive.RadioItemIndicator>
